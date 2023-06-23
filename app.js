@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 const AWS = require("aws-sdk");
 
 require("dotenv").config();
@@ -14,7 +14,7 @@ const user = require("./routes/user");
 const adminlogin = require("./routes/adminlogin");
 const aboutus = require("./routes/aboutus");
 const seller = require("./routes/seller");
-const category= require("./routes/category");
+const category = require("./routes/category");
 const subcategory = require("./routes/sub_category");
 const brands = require("./routes/brand");
 const units = require("./routes/units");
@@ -59,66 +59,61 @@ const addgroup = require("./routes/addgroup");
 // const app_driver = require("./routes/app_driver");
 const hot_deals = require("./routes/hot_deals");
 
-
-
-app.use('/', user);
-app.use('/', adminlogin);
-app.use('/', aboutus);
-app.use('/', seller);
-app.use('/', category);
-app.use('/', subcategory);
-app.use('/', brands);
-app.use('/', units);
-app.use('/', child_category);
-app.use('/', product);
-app.use('/', language);
-app.use('/', color);
-app.use('/', size);
-app.use('/', addbatch); 
-app.use('/', country_code);
-app.use('/', banner);
-app.use('/', create_hub);
-app.use('/', order);
-app.use('/', shop_wishlist);
-app.use('/', shop_cart);
-app.use('/', blog);
-app.use('/', wallet);
-app.use('/', assing_drive);
-app.use('/', vendor);
-app.use('/', attribute);
-app.use('/', selse);
-app.use('/', pincode);
-app.use('/', vehicle);
-app.use('/', coupon_code);
-app.use('/', leave_comment);
-app.use('/', refundrequest);
-app.use('/', subscription);
-app.use('/', trending);
-app.use('/', privacypolicy);
-app.use('/', Termsandcondition);
+app.use("/", user);
+app.use("/", adminlogin);
+app.use("/", aboutus);
+app.use("/", seller);
+app.use("/", category);
+app.use("/", subcategory);
+app.use("/", brands);
+app.use("/", units);
+app.use("/", child_category);
+app.use("/", product);
+app.use("/", language);
+app.use("/", color);
+app.use("/", size);
+app.use("/", addbatch);
+app.use("/", country_code);
+app.use("/", banner);
+app.use("/", create_hub);
+app.use("/", order);
+app.use("/", shop_wishlist);
+app.use("/", shop_cart);
+app.use("/", blog);
+app.use("/", wallet);
+app.use("/", assing_drive);
+app.use("/", vendor);
+app.use("/", attribute);
+app.use("/", selse);
+app.use("/", pincode);
+app.use("/", vehicle);
+app.use("/", coupon_code);
+app.use("/", leave_comment);
+app.use("/", refundrequest);
+app.use("/", subscription);
+app.use("/", trending);
+app.use("/", privacypolicy);
+app.use("/", Termsandcondition);
 // app.use('/', assingdata);
-app.use('/', assingvender);
-app.use('/', deal_of_day);
-app.use('/', return_product);
-app.use('/', review_rating);
-app.use('/', blog_category);
-
+app.use("/", assingvender);
+app.use("/", deal_of_day);
+app.use("/", return_product);
+app.use("/", review_rating);
+app.use("/", blog_category);
 
 // app user api
 
-app.use('/', appuser);
-app.use('/', addgroup);
+app.use("/", appuser);
+app.use("/", addgroup);
 // app.use('/', app_driver);
-app.use('/', hot_deals);
-
-
+app.use("/", hot_deals);
 
 app.get("/", (req, res) => {
   res.send("Hello World!!!!");
 });
 
 const fs = require("fs");
- 
+
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -129,7 +124,7 @@ mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     // useFindAndModify: false,
-    useNewUrlParser: true,                 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     //useFindAndModify: false,
   })
@@ -140,21 +135,21 @@ mongoose
     console.log(error);
   });
 
-  app.use((req, res, next) => {
-    res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, DELETE, OPTIONS'
-    );
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    next();
-    });
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+  next();
+});
 
 app.listen(process.env.PORT || 8000, () => {
-  console.log("Example app listening on port 8000");
+  console.log(`Example app listening on port ${process.env.PORT || 8000}`);
 });
