@@ -70,7 +70,7 @@ exports.vender_register = async (req, res) => {
       mobile: findexist.mobile,
       otp: defaultotp,
       _id: findexist._id,
-      status: findexist?.status,
+      status: findexist.status,
     });
   } else {
     newvender
@@ -79,8 +79,8 @@ exports.vender_register = async (req, res) => {
         res.json({
           status: "success",
           msg: "Otp send successfully",
-          mobile: data?.mobile,
-          _id: data?._id,
+          mobile: data.mobile,
+          _id: data._id,
           otp: defaultotp,
         });
       })
@@ -132,7 +132,7 @@ exports.login_vender_sendotp = async (req, res) => {
 
   const findexist = await appvender.findOne({ mobile: mobile });
 
-  if (findexist?.status == "true") {
+  if (findexist.status == "true") {
     console.log("findexist", findexist);
     res.status(200).send({
       status: true,
@@ -141,7 +141,7 @@ exports.login_vender_sendotp = async (req, res) => {
       _id: findexist._id,
       mobile: findexist.mobile,
     });
-  } else if (findexist?.status == "false") {
+  } else if (findexist.status == "false") {
     res.status(200).json({
       status: true,
       msg: "Waiting for Admin Approval",
@@ -229,7 +229,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.vendoor_img = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -247,7 +247,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.adhar_img_front = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -266,7 +266,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.adhar_img_back = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -284,7 +284,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.pancard_img_front = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -303,7 +303,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.pancard_img_back = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -322,7 +322,7 @@ exports.vender_register_img = async (req, res) => {
       if (geturl) {
         data.passbook_img = geturl.Location;
 
-        //fs.unlinkSync(`../uploads/${req.files.course_image[0]?.filename}`);
+        //fs.unlinkSync(`../uploads/${req.files.course_image[0].filename}`);
       }
     }
   }
@@ -436,7 +436,7 @@ exports.vender_register_img = async (req, res) => {
 //                   if (geturl) {
 //                     data.vendoor_img = geturl.Location;
 
-//                     //fs.unlinkSync(`../uploads/${req.files.vendoor_img[0]?.filename}`);
+//                     //fs.unlinkSync(`../uploads/${req.files.vendoor_img[0].filename}`);
 //                   }
 //                 }
 
