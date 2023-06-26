@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const newattributeSchema = new Schema(
-    {
-        size:{
-            type: String,
-        },
-        type:{
-            type: String,
-        },
+  {
+    size: {
+      type: String,
     },
-    {timestamps: true},
+    type: {
+      type: String,
+    },
+  },
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("attribute", newattributeSchema)
+module.exports = mongoose.model("attribute", newattributeSchema);

@@ -7,12 +7,11 @@ const fs = require("fs");
 // const { tokenverify } = require("../functions/tokenverify");
 
 const {
-    add_banner,
-    getall_banner,
-    viewone_banner,
-    del_banner,
-    getbannerbytype,
-    
+  add_banner,
+  getall_banner,
+  viewone_banner,
+  del_banner,
+  getbannerbytype,
 } = require("../controller/banner");
 
 const storage = multer.diskStorage({
@@ -26,7 +25,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  },  
+  },
 });
 
 const fileFilter = (req, file, cb) => {
@@ -43,20 +42,12 @@ const fileFilter = (req, file, cb) => {
 
 let uploads = multer({ storage: storage });
 
-let multipleUpload = uploads.fields([
-  { name: "banner_img", maxCount: 1 },
-]);
-
+let multipleUpload = uploads.fields([{ name: "banner_img", maxCount: 1 }]);
 
 router.post("/admin/add_banner", multipleUpload, add_banner);
-
 router.get("/admin/getall_banner", getall_banner);
-
 router.get("/admin/viewone_banner/:id", viewone_banner);
-
 router.get("/admin/getbannerbytype/:banner_type", getbannerbytype);
-
 router.delete("/admin/del_banner/:id", del_banner);
 
 module.exports = router;
- 

@@ -25,7 +25,6 @@ const {
 
   //adminuser form
   adduser,
-
 } = require("../controller/user");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -73,4 +72,3 @@ router.post("/user/resetPassword/:id", resetPassword);
 router.post("/admin/adduser", adduser);
 
 module.exports = router;
- 

@@ -32,7 +32,6 @@ exports.addorder = async (req, res) => {
     delivery_date,
     time_slot,
     items,
-    // assing_drive,
     email,
     notify,
     previous_add,

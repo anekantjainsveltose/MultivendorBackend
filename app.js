@@ -51,6 +51,7 @@ const review_rating = require("./routes/review_rating");
 const return_product = require("./routes/return_product");
 // const assingdata = require("./routes/assingdata");
 const blog_category = require("./routes/blog_category");
+const customer = require("./routes/customer");
 
 //app all api
 
@@ -70,6 +71,8 @@ app.use("/", product);
 app.use("/", color);
 app.use("/", size);
 app.use("/", wallet);
+app.use("/", banner);
+app.use("/", customer);
 
 app.use("/", user);
 app.use("/", aboutus);
@@ -78,7 +81,6 @@ app.use("/", units);
 app.use("/", child_category);
 app.use("/", addbatch);
 app.use("/", country_code);
-app.use("/", banner);
 app.use("/", order);
 app.use("/", shop_wishlist);
 app.use("/", shop_cart);

@@ -3,36 +3,35 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema(
   {
-   
     category_name: {
-        type: String,
-    },
-    
-    parent:{
       type: String,
     },
-    image:{
-       type: Array,
-    },
-    thumbnail_img:{
-      type: Array,
-    },
-    web_banner:{
-      type: Array,
-    },
-    app_banner:{
-      type: Array,
-    },
-    type:{
+
+    parent: {
       type: String,
     },
-   
-    feature:{
+    image: {
+      type: Array,
+    },
+    thumbnail_img: {
+      type: Array,
+    },
+    web_banner: {
+      type: Array,
+    },
+    app_banner: {
+      type: Array,
+    },
+    type: {
       type: String,
     },
-    status:{
-        type:String,
-        default: "Enable",
+
+    feature: {
+      type: String,
+    },
+    status: {
+      type: String,
+      default: "Enable",
     },
   },
   { timestamps: true }
