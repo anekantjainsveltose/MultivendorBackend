@@ -1,6 +1,6 @@
 const adminlogins = require("../models/adminlogin");
 const cloudinary = require("cloudinary").v2;
-const fs = require('fs');
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -13,13 +13,11 @@ const validatePassword = (password, dbpassword) => {
   return true;
 };
 
-
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
 
 exports.Addadmin = async (req, res) => {
   const {
@@ -58,7 +56,7 @@ exports.Addadmin = async (req, res) => {
     country: country,
     state: state,
     city: city,
-  })
+  });
 
   const findexist = await adminlogins.findOne({ email: email });
   if (findexist) {
@@ -87,11 +85,10 @@ exports.Addadmin = async (req, res) => {
   }
 };
 
-
 exports.adminlogin = async (req, res) => {
   const { email, password } = req.body;
   const user = await adminlogins.findOne({
-    $or: [{ email: email }, {password: password }],
+    $or: [{ email: email }, { password: password }],
   });
   if (user) {
     const validPass = await bcrypt.compare(password, user.password);
@@ -125,7 +122,7 @@ exports.adminlogin = async (req, res) => {
       error: "error",
     });
   }
-}
+};
 
 exports.getoneadmin = async (req, res) => {
   const findOne = await adminlogins.findOne({ _id: req.params.id });
@@ -142,10 +139,9 @@ exports.getoneadmin = async (req, res) => {
       error: "error",
     });
   }
-}
+};
 
 exports.adminprofile = async (req, res) => {
-
   const {
     username,
     email,
@@ -223,5 +219,4 @@ exports.adminprofile = async (req, res) => {
       });
     }
   }
-}
-
+};

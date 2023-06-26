@@ -35,9 +35,7 @@ exports.add_vendor = async (req, res) => {
   } = req.body;
 
   const salt = bcrypt.genSaltSync(saltRounds);
-  console.log(req.body);
   const hashpassword = await bcrypt.hash(password, salt);
-  console.log(hashpassword);
 
   const newvendor = new vendor({
     firstname: firstname,

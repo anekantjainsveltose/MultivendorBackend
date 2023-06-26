@@ -65,7 +65,6 @@ exports.addcategory = async (req, res) => {
     type,
     thumbnail_img,
     feature,
-    desc,
     image,
     web_banner,
     app_banner,
@@ -75,48 +74,45 @@ exports.addcategory = async (req, res) => {
     category_name: category_name,
     parent: parent,
     type: type,
-    thumbnail_img: thumbnail_img,
     feature: feature,
+    thumbnail_img: thumbnail_img,
     image: image,
     web_banner: web_banner,
     app_banner: app_banner,
   });
-  console.log(newCategory);
   const findexist = await Category.findOne({ category_name: category_name });
+
   if (findexist) {
-    // resp.alreadyr(res);
     res.json({
       status: false,
       msg: "Allready exist",
       data: {},
     });
   } else {
-    if (req.files.image[0].path) {
+    const { image, thumbnail_img, web_banner, app_banner } = req.files;
+
+    if (image) {
       image_array = [];
       for (let i = 0; i < req.files.image.length; i++) {
         const resp = await cloudinary.uploader.upload(req.files.image[i].path);
         fs.unlinkSync(req.files.image[i].path);
         image_array.push(resp.secure_url);
       }
-      newCategory.image = image_array;
+      newCategory.image = image_array[0];
     }
-    if (req.files.thumbnail_img[0].path) {
+    if (thumbnail_img) {
       thumbnail_img_array = [];
+
       for (let i = 0; i < req.files.thumbnail_img.length; i++) {
         const resp = await cloudinary.uploader.upload(
-          req.files.thumbnail_img[i].path,
-          { use_filename: true, unique_filename: false },
-          function (cb) {
-            // console.log(cb);
-          }
+          req.files.thumbnail_img[i].path
         );
         fs.unlinkSync(req.files.thumbnail_img[i].path);
         thumbnail_img_array.push(resp.secure_url);
       }
-      newCategory.thumbnail_img = thumbnail_img_array;
+      newCategory.thumbnail_img = thumbnail_img_array[0];
     }
-
-    if (req.files.web_banner[0].path) {
+    if (web_banner) {
       alluploads = [];
       for (let i = 0; i < req.files.web_banner.length; i++) {
         const resp = await cloudinary.uploader.upload(
@@ -128,8 +124,7 @@ exports.addcategory = async (req, res) => {
       }
       newCategory.web_banner = alluploads;
     }
-
-    if (req.files.app_banner[0].path) {
+    if (app_banner) {
       alluploads = [];
       for (let i = 0; i < req.files.app_banner.length; i++) {
         const resp = await cloudinary.uploader.upload(
@@ -141,6 +136,9 @@ exports.addcategory = async (req, res) => {
       }
       newCategory.app_banner = alluploads;
     }
+
+    console.log(newCategory);
+    console.log(req.files);
     newCategory
       .save()
       .then((data) => {
@@ -214,6 +212,7 @@ exports.del_one_category = async (req, res) => {
 
 exports.category_true_false = async (req, res) => {
   const { status } = req.body;
+  
   const findupdate = await Category.findOneAndUpdate(
     { _id: req.params.id },
     { $set: { status: status } },

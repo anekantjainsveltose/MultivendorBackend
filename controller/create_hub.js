@@ -1,5 +1,4 @@
 const createhub = require("../models/create_hub");
-const vendor = require("../models/vendor");
 const saltRounds = 10;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -144,10 +143,10 @@ exports.edit_hub = async (req, res) => {
 exports.hub_login = async (req, res) => {
   const { email, password } = req.body;
 
-  const loginhub = await vendor.findOne({
+  const loginhub = await createhub.findOne({
     $or: [{ email: email }, { password: password }],
   });
-  console.log(loginhub);
+
   if (loginhub) {
     const validPass = await bcrypt.compare(password, loginhub.password);
     if (validPass) {

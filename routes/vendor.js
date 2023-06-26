@@ -45,7 +45,7 @@ let multipleUpload = uploads.fields([
   { name: "shop_banner", maxCount: 1 },
 ]);
 
-router.post("/admin/add_vendor", add_vendor);
+router.post("/admin/add_vendor", multipleUpload, add_vendor);
 
 router.get("/admin/getall_vendor", getall_vendor);
 

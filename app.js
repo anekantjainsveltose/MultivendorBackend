@@ -59,30 +59,31 @@ const addgroup = require("./routes/addgroup");
 // const app_driver = require("./routes/app_driver");
 const hot_deals = require("./routes/hot_deals");
 
-app.use("/", user);
+app.use("/", create_hub);
+app.use("/", vendor);
 app.use("/", adminlogin);
-app.use("/", aboutus);
-app.use("/", seller);
 app.use("/", category);
 app.use("/", subcategory);
-app.use("/", brands);
-app.use("/", units);
-app.use("/", child_category);
-app.use("/", product);
 app.use("/", language);
+app.use("/", brands);
+app.use("/", product);
 app.use("/", color);
 app.use("/", size);
+app.use("/", wallet);
+
+app.use("/", user);
+app.use("/", aboutus);
+app.use("/", seller);
+app.use("/", units);
+app.use("/", child_category);
 app.use("/", addbatch);
 app.use("/", country_code);
 app.use("/", banner);
-app.use("/", create_hub);
 app.use("/", order);
 app.use("/", shop_wishlist);
 app.use("/", shop_cart);
 app.use("/", blog);
-app.use("/", wallet);
 app.use("/", assing_drive);
-app.use("/", vendor);
 app.use("/", attribute);
 app.use("/", selse);
 app.use("/", pincode);
@@ -102,7 +103,6 @@ app.use("/", review_rating);
 app.use("/", blog_category);
 
 // app user api
-
 app.use("/", appuser);
 app.use("/", addgroup);
 // app.use('/', app_driver);
@@ -151,6 +151,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(process.env.PORT || 8000, () => {
-  console.log(process.env.DATABASE);
   console.log(`Example app listening on port ${process.env.PORT || 8000}`);
 });

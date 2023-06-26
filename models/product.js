@@ -10,109 +10,109 @@ const productSchema = new Schema(
       type: String,
     },
     description: {
-        type: String,
+      type: String,
     },
-    type:{
+    type: {
       type: String,
     },
     brand: {
-        type: Schema.Types.ObjectId,
-        ref:"brands",
+      type: Schema.Types.ObjectId,
+      ref: "brands",
     },
-    model:{
-       type: String,
+    model: {
+      type: String,
     },
-    quantity:{
-        type: Number,
+    quantity: {
+      type: Number,
     },
-    gst_class:{
-        type: String,
-     },
+    gst_class: {
+      type: String,
+    },
     min_selling_Q: {
       type: Number,
     },
     max_selling_Q: {
       type: Number,
     },
-    reward_points:{
-      type:String,
+    reward_points: {
+      type: String,
     },
-    product_image:{
-        type:String,
+    product_image: {
+      type: String,
     },
-    video_url:{
-        type:String,
+    video_url: {
+      type: String,
     },
-    metadata:{
-        type:String,
+    metadata: {
+      type: String,
     },
-    meta_desc:{
-        type:String,
+    meta_desc: {
+      type: String,
     },
-    product_search_tags:{
-        type:String,
+    product_search_tags: {
+      type: String,
     },
-    category:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Category",
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
     },
-    sub_category:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"subproductcategories",
+    sub_category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "subproductcategories",
     },
-    mrp:{
-        type:Number,
+    mrp: {
+      type: Number,
     },
-    buying_price1:{
-        type:Number,
+    buying_price1: {
+      type: Number,
     },
-    m_margin1:{
-        type:Number,
+    m_margin1: {
+      type: Number,
     },
-    buying_price:{
-        type:Number,
+    buying_price: {
+      type: Number,
     },
-    m_margin:{
-        type:Number,
+    m_margin: {
+      type: Number,
     },
-    selling_price:{
-        type:Number,
+    selling_price: {
+      type: Number,
     },
-    m_customer:{
-        type:String,
+    m_customer: {
+      type: String,
     },
-    save_parsent:{
-        type:Number,
+    save_parsent: {
+      type: Number,
     },
-    units_name:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"units",
+    units_name: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "units",
     },
-    stock:{
-        type: Number,
+    stock: {
+      type: Number,
     },
-    color :{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:"color",
+    color: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "color",
     },
-    size :{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:"sizes",
+    size: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "sizes",
     },
-    status:{
-        type: String,
-        default: "Active",
+    status: {
+      type: String,
+      default: "Active",
     },
-    bundle:{
-        type:String,
+    bundle: {
+      type: String,
     },
-    fix_price:{
-        type: String,
+    fix_price: {
+      type: String,
     },
-    count:{
-        type:Number,
-        default:0
-    }
+    count: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
