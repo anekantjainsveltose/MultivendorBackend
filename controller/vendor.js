@@ -62,7 +62,8 @@ exports.add_vendor = async (req, res) => {
       data: {},
     });
   } else {
-    if (req.files?.vendor_img) {
+    const { vendor_img, shop_logo, shop_banner } = req.files;
+    if (vendor_img) {
       image_array = [];
       for (let i = 0; i < req.files.vendor_img.length; i++) {
         const result = await cloudinary.uploader.upload(
@@ -73,7 +74,7 @@ exports.add_vendor = async (req, res) => {
       }
       newvendor.vendor_img = image_array;
     }
-    if (req.files?.shop_logo) {
+    if (shop_logo) {
       image_array = [];
       for (let i = 0; i < req.files.shop_logo.length; i++) {
         const result = await cloudinary.uploader.upload(
@@ -84,7 +85,7 @@ exports.add_vendor = async (req, res) => {
       }
       newvendor.shop_logo = image_array;
     }
-    if (req.files?.shop_banner) {
+    if (shop_banner) {
       image_array = [];
       for (let i = 0; i < req.files.shop_banner.length; i++) {
         const result = await cloudinary.uploader.upload(
